@@ -5,7 +5,6 @@ from sourmash import sourmash_args
 from sourmash.cli import utils as sourmash_cli
 
 from enum import Enum
-from types import SimpleNamespace
 
 __all__ = ['FracMinHash',
            'add_standard_minhash_args']
