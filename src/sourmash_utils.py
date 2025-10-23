@@ -1,9 +1,11 @@
 "Python utilities for sourmash plugins and scripts."
 import sourmash
+from sourmash.picklist import PickStyle
 from sourmash import sourmash_args
 from sourmash.cli import utils as sourmash_cli
 
 from enum import Enum
+from types import SimpleNamespace
 
 __all__ = ['FracMinHash',
            'add_standard_minhash_args']
@@ -76,13 +78,16 @@ def add_standard_minhash_args(parser):
     sourmash_cli.add_scaled_arg(parser)
 
 
-def create_minhash_from_args(args, *, track_abundance=False, **defaults):
+def create_minhash_from_args(args=None, *, ksize=None, scaled=None, moltype=None, track_abundance=False, **defaults):
     default_moltype = defaults.get('moltype')
-    moltype = sourmash_args.calculate_moltype(args, default=default_moltype)
-    ksize = args.ksize or defaults.get('ksize')
+
+    if args:
+        moltype = sourmash_args.calculate_moltype(args, default=default_moltype)
+        ksize = args.ksize or defaults.get('ksize')
+        scaled = args.scaled or defaults.get('scaled')
+
     if not ksize:
         ksize = DEFAULTS[moltype]['ksize']
-    scaled = args.scaled or defaults.get('scaled')
     if not scaled:
         scaled = DEFAULTS[moltype]['scaled']
 
@@ -92,15 +97,27 @@ def create_minhash_from_args(args, *, track_abundance=False, **defaults):
                        track_abundance=track_abundance)
 
 
-def load_index_and_select(filename, minhash_obj, *, raise_on_empty=True):
+def load_index_and_select(filename, minhash_obj, *, picklist=None, pickfile=None, coltype=None, colname=None, pickstyle=PickStyle.INCLUDE, raise_on_empty=True, args=None):
     """Load a sourmash Index object from filename,
     selecting sketches compatible with minhash_obj.
     """
     idx = sourmash.load_file_as_index(filename)
+
+    if args is not None:
+        pl = sourmash_args.load_picklist(args)
+    elif pickfile:
+        picklist_arg = f"{pickfile}:{colname}:{coltype}:{pickstyle.name.lower()}"
+        pl = sourmash_args.load_picklist(picklist=picklist_arg)
+    else:
+        pl = picklist
+
     idx = idx.select(ksize=minhash_obj.ksize,
                      moltype=minhash_obj.moltype,
                      scaled=minhash_obj.scaled,
-                     abund=minhash_obj.track_abundance)
+                     abund=minhash_obj.track_abundance,
+                     picklist=pl 
+                     )
+    print(idx)
     if not idx:
         raise ValueError(f"no matching sketches in '{filename}' for k={minhash_obj.ksize} moltype={minhash_obj.moltype} scaled={minhash_obj.scaled}")
     return idx

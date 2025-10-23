@@ -1,0 +1,10 @@
+accession,taxid,superkingdom,phylum,class,order,family,genus,species,strain
+AE000782.1,224325,Archaea,Euryarchaeota,Archaeoglobi,Archaeoglobales,Archaeoglobaceae,Archaeoglobus,Archaeoglobus fulgidus,Archaeoglobus fulgidus DSM 4304
+NC_000909.1,243232,Archaea,Euryarchaeota,Methanococci,Methanococcales,Methanocaldococcaceae,Methanocaldococcus,Methanocaldococcus jannaschii,Methanocaldococcus jannaschii DSM 2661
+NC_003272.1,103690,Bacteria,Cyanobacteria,,Nostocales,Nostocaceae,Nostoc,Nostoc sp. PCC 7120,
+AE009441.1,178306,Archaea,Crenarchaeota,Thermoprotei,Thermoproteales,Thermoproteaceae,Pyrobaculum,Pyrobaculum aerophilum,Pyrobaculum aerophilum str. IM2
+AE009950.1,186497,Archaea,Euryarchaeota,Thermococci,Thermococcales,Thermococcaceae,Pyrococcus,Pyrococcus furiosus,Pyrococcus furiosus DSM 3638
+AE009951.2,190304,Bacteria,Fusobacteria,Fusobacteriia,Fusobacteriales,Fusobacteriaceae,Fusobacterium,Fusobacterium nucleatum,
+AE010299.1,188937,Archaea,Euryarchaeota,Methanomicrobia,Methanosarcinales,Methanosarcinaceae,Methanosarcina,Methanosarcina acetivorans,Methanosarcina acetivorans C2A
+AE009439.1,190192,Archaea,Euryarchaeota,Methanopyri,Methanopyrales,Methanopyraceae,Methanopyrus,Methanopyrus kandleri,Methanopyrus kandleri AV19
+NC_003911.12,246200,Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Ruegeria,Ruegeria pomeroyi,Ruegeria pomeroyi DSS-3
